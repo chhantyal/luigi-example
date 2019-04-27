@@ -96,7 +96,7 @@ class AggregateTask(luigi.Task):
         return luigi.local_target.LocalTarget(f"target_files/report_{self.date.isoformat()}.txt")
 
 
-class SalesReport(luigi.WrapperTask):
+class SalesReport(luigi.task.MixinNaiveBulkComplete, luigi.WrapperTask):
     date = luigi.DateParameter()
 
     def requires(self):
